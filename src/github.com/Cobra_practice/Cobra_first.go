@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-	//var echoTimes int
 
 	var cmdAdd = &cobra.Command{
 		Use:   "add [filename to add]",
@@ -43,10 +42,7 @@ func main() {
 		},
 	}
 
-	//cmdTimes.Flags().IntVarP(&echoTimes, "times", "t", 1, "times to echo the input")
-
 	var rootCmd = &cobra.Command{Use: "dswac"}
 	rootCmd.AddCommand(cmdAdd, cmdUpload, cmdGet)
 	rootCmd.Execute()
-	//cmdPrint.Execute()
 }
