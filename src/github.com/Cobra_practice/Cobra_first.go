@@ -8,48 +8,45 @@ import (
 )
 
 func main() {
-	var echoTimes int
+	//var echoTimes int
 
-	var cmdPrint = &cobra.Command{
-		Use:   "print [string to print]",
-		Short: "Print anything to the screen",
-		Long: `print is for printing anything back to the screen.
-For many years people have printed back to the screen.`,
-		Args: cobra.MinimumNArgs(1),
+	var cmdAdd = &cobra.Command{
+		Use:   "add [filename to add]",
+		Short: "Add a file to IPFS",
+		Long:  `add is for adding a file to the IPFS system`,
+		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Print: " + strings.Join(args, " "))
+			//add code for adding file to IPFS
+			fmt.Println("Filename: " + strings.Join(args, " "))
 		},
 	}
 
-	var cmdEcho = &cobra.Command{
-		Use:   "echo [string to echo]",
-		Short: "Echo anything to the screen",
-		Long: `echo is for echoing anything back.
-Echo works a lot like print, except it has a child command.`,
-		Args: cobra.MinimumNArgs(1),
+	var cmdUpload = &cobra.Command{
+		Use:   "upload [JWT to upload]",
+		Short: "upload file to Blockchain",
+		Long:  `upload the file,filehash and the owner has as a JWT to the blockchain`,
+		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			fmt.Println("Print: " + strings.Join(args, " "))
+			//add code to upload to blockchain
+			fmt.Println("JWT: " + strings.Join(args, " "))
 		},
 	}
 
-	var cmdTimes = &cobra.Command{
-		Use:   "times [# times] [string to echo]",
-		Short: "Echo anything to the screen more times",
-		Long: `echo things multiple times back to the user by providing
-a count and a string.`,
-		Args: cobra.MinimumNArgs(1),
+	var cmdGet = &cobra.Command{
+		Use:   "get [filename to get]",
+		Short: "get a file from the blockchain",
+		Long:  `get the file from the blockchain with appropriate permissions`,
+		Args:  cobra.MinimumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			for i := 0; i < echoTimes; i++ {
-				fmt.Println("Echo: " + strings.Join(args, " "))
-			}
+			//add code to get a file from blockchain
+			fmt.Println("Filename: " + strings.Join(args, " "))
 		},
 	}
 
-	cmdTimes.Flags().IntVarP(&echoTimes, "times", "t", 1, "times to echo the input")
+	//cmdTimes.Flags().IntVarP(&echoTimes, "times", "t", 1, "times to echo the input")
 
-	var rootCmd = &cobra.Command{Use: "app"}
-	rootCmd.AddCommand(cmdPrint, cmdEcho)
-	cmdEcho.AddCommand(cmdTimes)
-	//rootCmd.Execute()
-	cmdPrint.Execute()
+	var rootCmd = &cobra.Command{Use: "dswac"}
+	rootCmd.AddCommand(cmdAdd, cmdUpload, cmdGet)
+	rootCmd.Execute()
+	//cmdPrint.Execute()
 }
